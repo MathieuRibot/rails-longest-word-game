@@ -36,7 +36,6 @@ class GamesController < ApplicationController
   end
 
   def run_game(attempt, grid, time)
-    # elapsed_time = end_time - start_time
     if respect_grid?(attempt, grid) == false
       @score = { id: 1, time: time, score: 0 }
     elsif english_word?(attempt) == false || attempt == ''
@@ -45,5 +44,8 @@ class GamesController < ApplicationController
       score = (1 / time).to_f + attempt.length.to_f
       @score = { id: 3, time: time.round(2), score: score.round(2) }
     end
+    session[:score] = 0 if session[:score].nil?
+    session[:score] = session[:score].to_f.round(2) + @score[:score]
+    @scores = session[:score]
   end
 end

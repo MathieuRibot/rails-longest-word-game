@@ -2,11 +2,13 @@
   <h1>Result</h1>
   <% if @score[:id] == 1 %>
     <p class="result">Sorry but <strong><%= @attempt %></strong> can't be built out of <%= params[:grid].split(' ').join(', ') %></p>
+    <p>Total score (for the session): <%= @scores %></p>
   <% elsif @score[:id] == 2 %>
     <p class="result">Sorry but <strong><%= @attempt %></strong> does not seem to be a valid English word ...</p>
+    <p>Total score (for the session): <%= @scores %></p>
   <% elsif @score[:id] == 3 %>
     <p class="result"><strong>Congratulations!</strong> <%= @attempt %> is a valid English word!</p>
-    <p>Score: <%= @score[:score] %> - Elapsed time: <%= @score[:time] %> seconds</p>
+    <p>Score: <%= @score[:score] %> (Total score (for the session): <%= @scores %>) - Elapsed time: <%= @score[:time] %> seconds</p>
   <% end %>
 </div>
 <div class="footer">
